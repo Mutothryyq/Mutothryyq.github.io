@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Muhammad Thoriq Ali Aljundi — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0f;
+      --surface: #111118;
+      --card: #16161f;
+      --border: #232333;
+      --accent: #7c6af7;
+      --accent2: #f76a6a;
+      --accent3: #6af7c4;
+      --text: #e8e8f0;
+      --muted: #8888a8;
+      --font-head: 'Syne', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 9999; opacity: 0.4;
+    }
+
+    /* NAVBAR */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 5%;
+      background: rgba(10,10,15,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { font-family: var(--font-head); font-size: 1.3rem; font-weight: 800; color: var(--accent); letter-spacing: -0.03em; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+
+    /* HERO */
+    header {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
+      padding: 8rem 8% 5rem;
+      position: relative; overflow: hidden;
+    }
+    header::after {
+      content: ''; position: absolute; top: -20%; right: -10%;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(124,106,247,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    header::before {
+      content: ''; position: absolute; bottom: 10%; left: -5%;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(106,247,196,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-tag {
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--accent3); border: 1px solid rgba(106,247,196,0.35);
+      padding: 0.3rem 0.9rem; border-radius: 999px; margin-bottom: 1.8rem;
+      display: inline-block; animation: fadeUp 0.7s ease both;
+    }
+    .hero-name {
+      font-family: var(--font-head);
+      font-size: clamp(2.4rem, 6vw, 5.5rem); font-weight: 800;
+      line-height: 1.0; letter-spacing: -0.04em; margin-bottom: 0.6rem;
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+    .hero-name span { color: var(--accent); }
+    .hero-role { font-size: clamp(1rem, 2vw, 1.2rem); color: var(--muted); font-weight: 300; margin-bottom: 1.5rem; animation: fadeUp 0.7s 0.2s ease both; }
+    .hero-role strong { color: var(--accent3); font-weight: 500; }
+    .hero-desc { max-width: 580px; color: var(--muted); font-size: 1rem; margin-bottom: 2.5rem; animation: fadeUp 0.7s 0.3s ease both; line-height: 1.8; }
+    .hero-links { display: flex; flex-wrap: wrap; gap: 1rem; animation: fadeUp 0.7s 0.4s ease both; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.75rem 1.6rem; border-radius: 8px;
+      font-family: var(--font-body); font-size: 0.9rem; font-weight: 500;
+      text-decoration: none; transition: all 0.2s; cursor: pointer;
+    }
+    .btn-primary { background: var(--accent); color: #fff; border: none; }
+    .btn-primary:hover { background: #9585f9; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(124,106,247,0.3); }
+    .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--border); }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+    .hero-info { margin-top: 4rem; display: flex; gap: 2.5rem; flex-wrap: wrap; animation: fadeUp 0.7s 0.5s ease both; }
+    .hero-info-item { display: flex; flex-direction: column; gap: 0.2rem; }
+    .hero-info-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); }
+    .hero-info-value { font-size: 0.95rem; font-weight: 500; }
+
+    /* SECTIONS */
+    section { padding: 6rem 8%; position: relative; }
+    .section-label { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 0.6rem; }
+    .section-title { font-family: var(--font-head); font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 0.5rem; }
+    .section-sub { color: var(--muted); max-width: 500px; margin-bottom: 3.5rem; font-size: 0.95rem; }
+    .divider { width: 100%; height: 1px; background: linear-gradient(90deg, var(--border), transparent); }
+
+    /* EDUCATION */
+    .timeline { display: flex; flex-direction: column; }
+    .timeline-item { display: grid; grid-template-columns: 180px 1fr; gap: 2rem; padding: 2.2rem 0; border-bottom: 1px solid var(--border); }
+    .timeline-item:last-child { border-bottom: none; }
+    .timeline-year { color: var(--muted); font-size: 0.85rem; padding-top: 0.3rem; line-height: 1.5; }
+    .timeline-school { font-family: var(--font-head); font-size: 1.15rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .timeline-detail { color: var(--muted); font-size: 0.9rem; margin-bottom: 0.2rem; }
+    .timeline-badge { display: inline-block; font-size: 0.72rem; letter-spacing: 0.08em; padding: 0.2rem 0.7rem; border-radius: 999px; margin-top: 0.5rem; }
+    .badge-active { background: rgba(106,247,196,0.12); color: var(--accent3); border: 1px solid rgba(106,247,196,0.3); }
+    .badge-done { background: rgba(124,106,247,0.12); color: var(--accent); border: 1px solid rgba(124,106,247,0.3); }
+
+    /* PROJECTS */
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+    .project-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.8rem;
+      transition: border-color 0.25s, transform 0.25s;
+      position: relative; overflow: hidden;
+    }
+    .project-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent3));
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .project-card:hover { border-color: rgba(124,106,247,0.5); transform: translateY(-4px); }
+    .project-card:hover::before { opacity: 1; }
+    .project-tag { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent3); font-weight: 600; margin-bottom: 0.8rem; }
+    .project-title { font-family: var(--font-head); font-size: 1.1rem; font-weight: 700; margin-bottom: 0.6rem; }
+    .project-desc { color: var(--muted); font-size: 0.88rem; margin-bottom: 1.2rem; line-height: 1.6; }
+    .project-stack { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .stack-tag { font-size: 0.72rem; background: var(--border); color: var(--muted); padding: 0.2rem 0.6rem; border-radius: 4px; }
+
+    /* SKILLS */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem; }
+    .skill-group { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 1.6rem; }
+    .skill-group-title { font-family: var(--font-head); font-size: 0.95rem; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .skill-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .skill-pill { font-size: 0.78rem; background: rgba(255,255,255,0.04); border: 1px solid var(--border); color: var(--text); padding: 0.3rem 0.8rem; border-radius: 6px; transition: all 0.2s; }
+    .skill-pill:hover { border-color: var(--accent); color: var(--accent); background: rgba(124,106,247,0.08); }
+
+    /* FOOTER */
+    footer { padding: 4rem 8%; border-top: 1px solid var(--border); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 2rem; }
+    .footer-brand { font-family: var(--font-head); font-size: 1.4rem; font-weight: 800; color: var(--accent); }
+    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .footer-links a { color: var(--muted); text-decoration: none; font-size: 0.88rem; display: flex; align-items: center; gap: 0.4rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--text); }
+    .footer-copy { color: var(--muted); font-size: 0.8rem; width: 100%; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 640px) {
+      .timeline-item { grid-template-columns: 1fr; gap: 0.3rem; }
+      .nav-links { display: none; }
+      nav { padding: 1rem 5%; }
+      header { padding: 7rem 6% 4rem; }
+      section { padding: 4rem 6%; }
+      footer { padding: 3rem 6%; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">Thoriq.</div>
+    <ul class="nav-links">
+      <li><a href="#about">Tentang</a></li>
+      <li><a href="#education">Pendidikan</a></li>
+      <li><a href="#projects">Proyek</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Kontak</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <header id="about">
+    <div class="hero-tag">&#9679; Open to Collaboration &amp; Opportunities</div>
+    <h1 class="hero-name">Muhammad<br><span>Thoriq</span> Ali<br>Aljundi.</h1>
+    <p class="hero-role">
+      Software Engineering Student &nbsp;·&nbsp;
+      <strong>Politeknik Negeri Batam</strong>
+    </p>
+    <p class="hero-desc">
+      Mahasiswa Teknologi Rekayasa Perangkat Lunak di Politeknik Negeri Batam dengan latar belakang Teknik Komputer dan Jaringan. Bersemangat dalam pengembangan perangkat lunak, membangun solusi digital, dan terus belajar teknologi baru untuk menciptakan dampak nyata.
+    </p>
+    <div class="hero-links">
+      <a href="https://linkedin.com/in/muhammad-thoriq-ali-aljundi" class="btn btn-primary" target="_blank">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452H17.21v-5.569c0-1.327-.024-3.037-1.851-3.037-1.852 0-2.136 1.445-2.136 2.939v5.667H9.985V9h3.099v1.561h.043c.431-.818 1.484-1.682 3.054-1.682 3.266 0 3.867 2.149 3.867 4.944v6.629zM5.337 7.433a1.8 1.8 0 1 1 0-3.6 1.8 1.8 0 0 1 0 3.6zM6.76 20.452H3.91V9h2.85v11.452zM22.225 0H1.771C.792 0 0 .773 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .773 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://github.com/Mutothryyq" class="btn btn-ghost" target="_blank">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        GitHub
+      </a>
+    </div>
+    <div class="hero-info">
+      <div class="hero-info-item">
+        <span class="hero-info-label">Email</span>
+        <span class="hero-info-value">mutothryyq@gmail.com</span>
+      </div>
+      <div class="hero-info-item">
+        <span class="hero-info-label">Lokasi</span>
+        <span class="hero-info-value">Kota Batam, Indonesia</span>
+      </div>
+      <div class="hero-info-item">
+        <span class="hero-info-label">Status</span>
+        <span class="hero-info-value">Mahasiswa Aktif — 2025</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="divider"></div>
+
+  <!-- PENDIDIKAN -->
+  <section id="education">
+    <div class="section-label">02 — Riwayat Pendidikan</div>
+    <h2 class="section-title">Perjalanan<br>Akademik</h2>
+    <p class="section-sub">Pendidikan formal yang membentuk dasar pengetahuan dan keterampilan saya.</p>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-year">2025 — Sekarang</div>
+        <div>
+          <div class="timeline-school">Politeknik Negeri Batam</div>
+          <div class="timeline-detail">Teknik Informatika · Prodi Teknologi Rekayasa Perangkat Lunak</div>
+          <div class="timeline-detail">Tahun Masuk: 2025</div>
+          <span class="timeline-badge badge-active">Sedang Berjalan</span>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2022 — 2025</div>
+        <div>
+          <div class="timeline-school">SMK Negeri 1 Batam</div>
+          <div class="timeline-detail">Teknik Komputer dan Jaringan</div>
+          <div class="timeline-detail">Tahun Masuk: 2022 · Lulus: 2025</div>
+          <span class="timeline-badge badge-done">Lulus</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PROYEK -->
+  <section id="projects">
+    <div class="section-label">03 — Riwayat Proyek</div>
+    <h2 class="section-title">Proyek yang<br>Pernah Dikerjakan</h2>
+    <p class="section-sub">Kumpulan proyek selama masa pendidikan, dari SMK hingga perkuliahan.</p>
+    <div class="projects-grid">
+
+
+      <div class="project-card">
+        <div class="project-tag">PBL · Semester 2 — Polban</div>
+        <div class="project-title">E-Outsourcing</div>
+        <p class="project-desc">Website absensi karyawan outsourcing yang memudahkan pencatatan kehadiran secara digital. Dirancang untuk mempermudah manajemen data karyawan dan laporan absensi secara efisien.</p>
+        <div class="project-stack">
+          <span class="stack-tag">HTML</span>
+          <span class="stack-tag">CSS</span>
+          <span class="stack-tag">JavaScript</span>
+          <span class="stack-tag">PHP</span>
+          <span class="stack-tag">MySQL</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tag">PBL · Semester 1 — Polban</div>
+        <div class="project-title">RUANG — Rekapitalisasi Keuangan</div>
+        <p class="project-desc">Website keuangan digital untuk lingkungan RT/RW yang memudahkan pengelolaan, pencatatan, dan pelaporan keuangan warga secara transparan dan terorganisir.</p>
+        <div class="project-stack">
+          <span class="stack-tag">HTML</span>
+          <span class="stack-tag">CSS</span>
+          <span class="stack-tag">JavaScript</span>
+          <span class="stack-tag">PHP</span>
+          <span class="stack-tag">MySQL</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tag">Praktik · SMK</div>
+        <div class="project-title">Konfigurasi Jaringan Komputer</div>
+        <p class="project-desc">Merancang dan mengkonfigurasi jaringan komputer meliputi pengaturan router, switch, dan topologi jaringan. Termasuk troubleshooting dan manajemen koneksi antar perangkat.</p>
+        <div class="project-stack">
+          <span class="stack-tag">Cisco Packet Tracer</span>
+          <span class="stack-tag">Networking</span>
+          <span class="stack-tag">TCP/IP</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tag">Tugas Kuliah · Polban</div>
+        <div class="project-title">Website Development</div>
+        <p class="project-desc">Membangun aplikasi web sebagai bagian dari tugas perkuliahan. Mencakup desain antarmuka, pengembangan front-end, dan implementasi logika dasar sebuah website.</p>
+        <div class="project-stack">
+          <span class="stack-tag">HTML</span>
+          <span class="stack-tag">CSS</span>
+          <span class="stack-tag">JavaScript</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-label">04 — Skillset</div>
+    <h2 class="section-title">Keterampilan<br>yang Saya Miliki</h2>
+    <p class="section-sub">Kemampuan teknis dan non-teknis yang terus saya kembangkan dari SMK hingga perkuliahan.</p>
+    <div class="skills-grid">
+
+      <div class="skill-group">
+        <div class="skill-group-title">
+          <span class="dot" style="background:#7c6af7"></span>
+          Programming Languages
+        </div>
+        <div class="skill-list">
+          <span class="skill-pill">HTML</span>
+          <span class="skill-pill">CSS</span>
+          <span class="skill-pill">JavaScript</span>
+          <span class="skill-pill">Python</span>
+          <span class="skill-pill">PHP</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">
+          <span class="dot" style="background:#6af7c4"></span>
+          Networking & Infrastructure
+        </div>
+        <div class="skill-list">
+          <span class="skill-pill">Konfigurasi Jaringan</span>
+          <span class="skill-pill">TCP/IP</span>
+          <span class="skill-pill">Routing & Switching</span>
+          <span class="skill-pill">Cisco Packet Tracer</span>
+          <span class="skill-pill">Troubleshooting</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">
+          <span class="dot" style="background:#f7c46a"></span>
+          Tools & Platform
+        </div>
+        <div class="skill-list">
+          <span class="skill-pill">VS Code</span>
+          <span class="skill-pill">Git & GitHub</span>
+          <span class="skill-pill">Canva</span>
+          <span class="skill-pill">Figma</span>
+          <span class="skill-pill">Game Engine</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">
+          <span class="dot" style="background:#f76a6a"></span>
+          Soft Skills
+        </div>
+        <div class="skill-list">
+          <span class="skill-pill">Komunikasi</span>
+          <span class="skill-pill">Teamwork</span>
+          <span class="skill-pill">Problem Solving</span>
+          <span class="skill-pill">Adaptif</span>
+          <span class="skill-pill">Manajemen Waktu</span>
+          <span class="skill-pill">Kemauan Belajar</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- FOOTER -->
+  <footer id="contact">
+    <div>
+      <div class="footer-brand">Thoriq.</div>
+      <p style="color:var(--muted);font-size:0.85rem;margin-top:0.4rem;">Muhammad Thoriq Ali Aljundi &nbsp;·&nbsp; mutothryyq@gmail.com</p>
+    </div>
+    <div class="footer-links">
+      <a href="https://linkedin.com/in/muhammad-thoriq-ali-aljundi" target="_blank">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452H17.21v-5.569c0-1.327-.024-3.037-1.851-3.037-1.852 0-2.136 1.445-2.136 2.939v5.667H9.985V9h3.099v1.561h.043c.431-.818 1.484-1.682 3.054-1.682 3.266 0 3.867 2.149 3.867 4.944v6.629zM5.337 7.433a1.8 1.8 0 1 1 0-3.6 1.8 1.8 0 0 1 0 3.6zM6.76 20.452H3.91V9h2.85v11.452zM22.225 0H1.771C.792 0 0 .773 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .773 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://github.com/Mutothryyq" target="_blank">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        GitHub
+      </a>
+      <a href="mailto:mutothryyq@gmail.com">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Email
+      </a>
+    </div>
+    <p class="footer-copy">© 2025 Muhammad Thoriq Ali Aljundi · Dibuat dengan ❤️ menggunakan GitHub Pages.</p>
+  </footer>
+
+</body>
+</html>
